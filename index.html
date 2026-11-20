@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <!-- スマートフォンでも画面を見やすくする設定 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>かんばんタスク管理</title>
+  <!-- 見た目の設定ファイルを読み込む -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ページの一番上 -->
+  <header class="page-header">
+    <h1>G's課題用タスク管理</h1>
+    <p>タスクを言語化して課題提出を完了させる</p>
+  </header>
+
+  <main class="page-content">
+    <!-- タスクを入力する場所 -->
+    <section class="task-form-area">
+      <h2 id="form-title">タスクを追加</h2>
+
+      <form id="task-form">
+        <label for="task-title">タスク名</label>
+        <input
+          id="task-title"
+          type="text"
+          maxlength="60"
+          placeholder="例：課題のアイデアを考える"
+          required
+        >
+
+        <label for="task-detail">説明</label>
+        <textarea
+          id="task-detail"
+          rows="3"
+          maxlength="200"
+          placeholder="タスクの内容を書く"
+        ></textarea>
+
+        <div class="form-buttons">
+          <button id="save-button" type="submit">タスクを追加</button>
+          <button id="cancel-edit-button" class="secondary-button" type="button" hidden>
+            編集をやめる
+          </button>
+        </div>
+      </form>
+
+      <!-- 保存や編集の結果を知らせる場所 -->
+      <p id="message" class="message" aria-live="polite"></p>
+    </section>
+
+    <!-- タスクを3つの進み具合に分けて表示する場所 -->
+    <section class="board" aria-label="タスクボード">
+      <div class="column">
+        <!-- タスクの数を数える -->
+        <h2>これから <span id="todo-count">0</span></h2> 
+        <div id="todo-list" class="task-list"></div>
+      </div>
+
+      <div class="column">
+        <!-- タスクの数を数える -->
+        <h2>進行中 <span id="doing-count">0</span></h2>
+        <div id="doing-list" class="task-list"></div>
+      </div>
+
+      <div class="column">
+        <!-- タスクの数を数える -->
+        <h2>完了 <span id="done-count">0</span></h2>
+        <div id="done-list" class="task-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>タスクはこのブラウザに保存されます。</p>
+  </footer>
+
+  <!-- jQueryを先に読み込む -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- 自分で書いた動きのプログラムを読み込む -->
+  <script src="app.js"></script>
+</body>
+</html>
+
+<!-- 作業メモ
+ aria-labelは、視覚的なテキストが存在しない、
+ またはテキストだけでは支援技術（スクリーンリーダー等）に正しい意味が伝わらない要素に、
+ 音声読み上げ用の名前を付与するための属性-->
